@@ -3,17 +3,42 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Black Jack</title>
         <meta name="description" content="A clone of the popular black jack game">
         <meta name="author" content="Yonas Mulyadi">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
         <noscript>
             Please enable your javascript plugin, and reload the page.
         </noscript>
-        
+        <header class="title">
+            <h1 class="title__content"> Blackjack Games </h1>
+        </header>
+        <main>
+            <section class="board">
+                <section class="board__cards">
+                    <div class="board__cards__dealer">
+                        <p>Dealer's score:</p>
+                    </div>
+                    <div class="board__cards__deck">
+                        <img src="assets/images/bee-diamondred.jpg" alt="deck" class="deck__cards">
+                        <p class="deck__count">remaining cards: <span>52</span></p>
+                    </div>
+                    <div class="board__cards__player">
+                        <p>Player's score:</p>
+                    </div>
+                </section>
+                <section class="board__bet"></section>
+            </section>
+            <section class="features">
+                <button class="features__button">hit</button>
+                <button class="features__button">stay</button>
+                <button class="features__button">fold</button>
+            </section>
+        </main>
         <script src="./script.js" async defer></script>
     </body>
 </html>
