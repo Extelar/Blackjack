@@ -37,11 +37,29 @@ body {
     transition: all .2s ease-in;
 }
 
-.board__cards__dealer {
+.card img{
+    width: 5%;
+    position: absolute;
+    /*
+        top: 6rem;
+        left: 20rem;
+    */
+    /*
+        top: 38rem;
+        left: 20rem;
+    */
+    top: 20.5rem;
+    left: 39.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-in;
+}
+
+.board__cards__one {
     height: 20vh;
 }
 
-.board__cards__dealer p {
+.board__cards__one p {
     margin: 0;
     padding-top: 4rem;
     padding-left: 5rem;
@@ -62,7 +80,6 @@ body {
 .board__cards__deck img {
     width: 8%;
     padding-top: 5rem;
-    
 }
 
 .deck__count {
@@ -80,11 +97,11 @@ body {
     color: rgb(209, 209, 10);
 }
 
-.board__cards__player {
+.board__cards__two {
     height: 20vh;
 }
 
-.board__cards__player p {
+.board__cards__two p {
     margin: 0;
     padding-top: 4rem;
     padding-left: 5rem;
@@ -92,9 +109,14 @@ body {
     font-weight: 700;
 }
 
+
 /*
     animation
 */
+
+:focus {
+    outline: 0;
+}
 
 .features__button:hover {
     transform: scale(.98);
