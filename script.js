@@ -2,7 +2,8 @@ let cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9
 let totalCards = cards.length;
 let cardSectionCounter = 1;
 let leftIncrement = 0.9;
-let cardLeftPosition = 20;
+let cardLeftPosition = 30;
+let isPlayerOneTurn = true;
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
 const deckCounter = document.querySelector('.deck__count span');
@@ -13,8 +14,15 @@ const foldButton = document.querySelector('.fold');
 
 const changeCardPosition = (className, leftPosition) => {
     let card = document.querySelector(className)
+    if (isPlayerOneTurn) {
+        card.style.top = '35rem'
+        cardLeftPosition += leftIncrement;
+    }
+    else
+    {
+        card.style.top = '6rem';
+    }
     card.style.opacity = '1';
-    card.style.top = '35rem';
     card.style.left = leftPosition.toString() + 'rem';
     card.style.visibility = 'visible';
 }
@@ -79,9 +87,10 @@ const getCard = (number) => {
     console.log(playerTwoBoard);
 }
 
-const updateDeckCounter = () => {
-    deckCounter.innerHTML = totalCards;
+const updateAllCounter = () => {
     totalCards -= 1;
+    deckCounter.innerHTML = totalCards;
+    cardSectionCounter += 1;
 }
 
 hitButton.addEventListener('click', () => {
@@ -98,11 +107,10 @@ hitButton.addEventListener('click', () => {
         console.log(cardLeftPosition)
     },10);
     setTimeout(() => {
-        cardLeftPosition += leftIncrement;
-        cardSectionCounter += 1;
-        console.log(cardLeftPosition);
+        isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
+        console.log(cardLeftPosition)
     },20)
-    updateDeckCounter();
+    updateAllCounter();
 })
 
-updateDeckCounter();
+deckCounter.innerHTML = totalCards;
