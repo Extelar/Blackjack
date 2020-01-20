@@ -61,10 +61,14 @@ body {
 
 .board__cards__one p {
     margin: 0;
-    padding-top: 4rem;
-    padding-left: 5rem;
+    margin-top: 4rem;
+    margin-left: 5rem;
+    padding: 1rem;
     font-size: 1.6rem;
     font-weight: 700;
+    display: inline-block;
+    background: none;
+    transition: all .2s ease-in;
 }
 
 .board__cards__deck img{
@@ -80,6 +84,10 @@ body {
 .board__cards__deck img {
     width: 8%;
     padding-top: 5rem;
+}
+
+.board__score {
+    margin-left: 1.2rem;
 }
 
 .deck__count {
@@ -103,10 +111,14 @@ body {
 
 .board__cards__two p {
     margin: 0;
-    padding-top: 4rem;
-    padding-left: 5rem;
+    margin-top: 4rem;
+    margin-left: 5rem;
+    padding: 1rem;
     font-size: 1.6rem;
     font-weight: 700;
+    display: inline-block;
+    background: none;
+    transition: all .2s ease-in;
 }
 
 

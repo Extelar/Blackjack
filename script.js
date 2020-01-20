@@ -4,6 +4,7 @@ let cardSectionCounter = 1;
 let leftIncrement = 0.9;
 let cardLeftPosition = 30;
 let isPlayerOneTurn = true;
+let playersTotalScore = [0,0];
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
 const deckCounter = document.querySelector('.deck__count span');
@@ -14,17 +15,31 @@ const foldButton = document.querySelector('.fold');
 
 const changeCardPosition = (className, leftPosition) => {
     let card = document.querySelector(className)
-    if (isPlayerOneTurn) {
-        card.style.top = '35rem'
+    if (isPlayerOneTurn) 
+    {
+        card.style.top = '6rem'
         cardLeftPosition += leftIncrement;
     }
     else
     {
-        card.style.top = '6rem';
+        card.style.top = '35rem';
     }
     card.style.opacity = '1';
     card.style.left = leftPosition.toString() + 'rem';
     card.style.visibility = 'visible';
+}
+
+const changePlayerIndicator = (boolean, sectionOne, sectionTwo) => {
+    if (boolean) 
+    {
+        document.querySelector(sectionOne).style.cssText = 'color: yellow; background: #300606; border-radius: 5px';
+        document.querySelector(sectionTwo).style.cssText = 'color: #fff; background: none';
+    }
+    else 
+    {
+        document.querySelector(sectionOne).style.cssText = 'color: #fff; background: none';
+        document.querySelector(sectionTwo).style.cssText = 'color: yellow; background: #300606; border-radius: 5px';
+    }  
 }
 
 const createCard = (sourceUrl,alternateText) => {
@@ -88,18 +103,36 @@ const getCard = (number) => {
 }
 
 const updateAllCounter = () => {
-    totalCards -= 1;
-    deckCounter.innerHTML = totalCards;
+    let nullCounter = 0;
+    for (el of cards)
+    {
+        if (el === null)
+        {
+            nullCounter += 1;
+        }
+    }
+    deckCounter.innerHTML = totalCards - nullCounter;
     cardSectionCounter += 1;
+    isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
+}
+
+const updateScore = (increment) => {
+    isPlayerOneTurn ? playersTotalScore[0] += increment : playersTotalScore[1] += increment;
+    playerOneBoard.querySelector('.board__score').innerHTML =  playersTotalScore[0];
+    playerTwoBoard.querySelector('.board__score').innerHTML = playersTotalScore[1];
 }
 
 hitButton.addEventListener('click', () => {
-    let cardIndex = Math.floor(Math.random() * 52);
-    let cardOfType = `.card:nth-of-type(${cardSectionCounter}) img`; 
-    while (cards[cardIndex] === null)
+    let cardIndex;
+    let cardValue;
+    let cardOfType = `.card:nth-of-type(${cardSectionCounter}) img`;
+    do
     {
         cardIndex = Math.floor(Math.random() * 52);
+        cardValue = cards[cardIndex];
     }
+    while (cardValue === null)
+    updateScore(cardValue)
     getCard(cards[cardIndex]);
     cards[cardIndex] = null; 
     setTimeout(() => {
@@ -107,10 +140,12 @@ hitButton.addEventListener('click', () => {
         console.log(cardLeftPosition)
     },10);
     setTimeout(() => {
-        isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
-        console.log(cardLeftPosition)
+        updateAllCounter();
+        changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
+        console.log(cards)
     },20)
-    updateAllCounter();
 })
 
+changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
+updateScore(0)
