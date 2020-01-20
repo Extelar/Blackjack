@@ -1,7 +1,7 @@
 let cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13]
 let totalCards = cards.length;
-let cardIndex = 0;
-let leftIncrement = 0.1;
+let cardSectionCounter = 1;
+let leftIncrement = 0.9;
 let cardLeftPosition = 20;
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
@@ -81,10 +81,12 @@ const getCard = (number) => {
 
 const updateDeckCounter = () => {
     deckCounter.innerHTML = totalCards;
+    totalCards -= 1;
 }
 
 hitButton.addEventListener('click', () => {
-    cardIndex = Math.floor(Math.random() * 52);
+    let cardIndex = Math.floor(Math.random() * 52);
+    let cardOfType = `.card:nth-of-type(${cardSectionCounter}) img`; 
     while (cards[cardIndex] === null)
     {
         cardIndex = Math.floor(Math.random() * 52);
@@ -92,14 +94,15 @@ hitButton.addEventListener('click', () => {
     getCard(cards[cardIndex]);
     cards[cardIndex] = null; 
     setTimeout(() => {
-        changeCardPosition('.card img', cardLeftPosition)
+        changeCardPosition(cardOfType, cardLeftPosition)
         console.log(cardLeftPosition)
     },10);
     setTimeout(() => {
         cardLeftPosition += leftIncrement;
+        cardSectionCounter += 1;
         console.log(cardLeftPosition);
     },20)
-    console.log(cards);
+    updateDeckCounter();
 })
 
 updateDeckCounter();
