@@ -2,8 +2,10 @@ let cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9
 let totalCards = cards.length;
 let cardSectionCounter = 1;
 let leftIncrement = 0.9;
-let cardLeftPosition = 30;
+let cardLeftPosition = 29.6;
+let lastLeftPosition = 0;
 let isPlayerOneTurn = true;
+let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
@@ -13,19 +15,15 @@ const stayButton = document.querySelector('.stay');
 const foldButton = document.querySelector('.fold');
 
 
-const changeCardPosition = (className, leftPosition) => {
+const changeCardPosition = (className) => {
     let card = document.querySelector(className)
-    if (isPlayerOneTurn) 
+    isPlayerOneTurn ? card.style.top = '6rem' : card.style.top = '35rem';
+    if (isPlayerOneTurn)
     {
-        card.style.top = '6rem'
         cardLeftPosition += leftIncrement;
     }
-    else
-    {
-        card.style.top = '35rem';
-    }
     card.style.opacity = '1';
-    card.style.left = leftPosition.toString() + 'rem';
+    card.style.left = cardLeftPosition.toString() + 'rem';
     card.style.visibility = 'visible';
 }
 
@@ -126,6 +124,7 @@ hitButton.addEventListener('click', () => {
     let cardIndex;
     let cardValue;
     let cardOfType = `.card:nth-of-type(${cardSectionCounter}) img`;
+    isStayButtonClicked = false;
     do
     {
         cardIndex = Math.floor(Math.random() * 52);
@@ -136,7 +135,7 @@ hitButton.addEventListener('click', () => {
     getCard(cards[cardIndex]);
     cards[cardIndex] = null; 
     setTimeout(() => {
-        changeCardPosition(cardOfType, cardLeftPosition)
+        changeCardPosition(cardOfType)
         console.log(cardLeftPosition)
     },10);
     setTimeout(() => {
@@ -145,6 +144,16 @@ hitButton.addEventListener('click', () => {
         console.log(cards)
     },20)
 })
+
+stayButton.addEventListener('click', () => {
+    isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
+    changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
+    lastLeftPosition = cardLeftPosition;
+})
+
+
+
+//Code which run individually without event listeners
 
 changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
