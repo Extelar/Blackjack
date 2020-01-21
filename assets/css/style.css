@@ -3,12 +3,12 @@
 }
 
 body {
-    background-color: green;
+    background: url('../images/green-background.jpg') fixed center;
     color: #fff;
 }
 
 .title {
-    background-color: black;
+    background-color: rgb(95, 95, 63);
     padding-top: .8rem;
     height: 4rem;
 }
