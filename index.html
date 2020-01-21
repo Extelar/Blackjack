@@ -19,6 +19,27 @@
             <h1 class="title__content"> Blackjack for Two </h1>
         </header>
         <main>
+            <section class="register">
+                <form class="register__form">
+                    <p class="form__player1">
+                        <label for="player_one">
+                            Player one's name:
+                            <input type="text" id="player_one" name="player_one_name" required>
+                        </label>
+                    </p>
+                    <p class="form__player2">
+                        <label for="player_two">
+                            Player two's name:
+                            <input type="text" id="player_two" name="player_two_name" required>
+                        </label>
+                    </p>
+                    <fieldset class="form__score">
+                        <legend>Which final score do you want to play with?</legend>
+                        <p><label class="score__choice"> <input type="radio" name="final_score" required value="21"> 21 </label></p>
+                        <p><label class="score__choice"> <input type="radio" name="final_score" required value="42"> 42 </label></p>
+                    </fieldset>
+                </form>
+            </section>
             <section class="board">
                 <section class="board__cards">
                     <div class="board__cards__one">

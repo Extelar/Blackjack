@@ -121,6 +121,11 @@ body {
     transition: all .2s ease-in;
 }
 
+.register {
+    position: absolute;
+    top: 0;
+}
+
 
 /*
     animation
