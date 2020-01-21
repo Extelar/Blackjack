@@ -2,8 +2,7 @@ let cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9
 let totalCards = cards.length;
 let cardSectionCounter = 1;
 let leftIncrement = 0.9;
-let cardLeftPosition = 29.6;
-let lastLeftPosition = 0;
+let cardLeftPosition = [29.6, 29.6];
 let isPlayerOneTurn = true;
 let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
@@ -20,10 +19,15 @@ const changeCardPosition = (className) => {
     isPlayerOneTurn ? card.style.top = '6rem' : card.style.top = '35rem';
     if (isPlayerOneTurn)
     {
-        cardLeftPosition += leftIncrement;
+        cardLeftPosition[0] += leftIncrement;
+        card.style.left = cardLeftPosition[0].toString() + 'rem';
+    }
+    else
+    {
+        cardLeftPosition[1] += leftIncrement;
+        card.style.left = cardLeftPosition[1].toString() + 'rem';
     }
     card.style.opacity = '1';
-    card.style.left = cardLeftPosition.toString() + 'rem';
     card.style.visibility = 'visible';
 }
 
@@ -97,7 +101,6 @@ const getCard = (number) => {
             break;
     }
     playerTwoBoard.appendChild(card);
-    console.log(playerTwoBoard);
 }
 
 const updateAllCounter = () => {
@@ -148,14 +151,11 @@ hitButton.addEventListener('click', () => {
 stayButton.addEventListener('click', () => {
     isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
     changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
-    lastLeftPosition = cardLeftPosition;
     console.log(cardLeftPosition)
 })
-
-
 
 //Code which run individually without event listeners
 
 changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
-updateScore(0)
+updateScore(0);
