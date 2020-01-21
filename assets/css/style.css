@@ -3,7 +3,7 @@
 }
 
 ::placeholder {
-    padding-left: .5rem;
+    padding-left: .1rem;
 }
 
 body {
@@ -119,14 +119,21 @@ body {
 
 .register {
     position: absolute;
-    top: 22vh;
+    top: 20vh;
     background-color: #fff;
     color: black;
     width: 30%;
-    height: 50%;
+    height: 60vh;
     left: 28.5rem;
     z-index: 1000;
     text-align: center;
+    padding-top: 1.7rem;
+}
+
+.register__image {
+    display: block;
+    width: 10%;
+    margin: auto;
 }
 
 .register__form {
@@ -149,6 +156,7 @@ body {
     margin-top: .4rem;
     height: 5vh;
     width: 100%;
+    padding-left: .5rem;
 }
 
 .form__fieldset {
@@ -172,7 +180,19 @@ body {
     font-weight: 700;
     margin-top: .6rem;
     color: #fff;
+    cursor: pointer;
     text-transform: uppercase;
+    transition: all .2s ease-in;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(83, 77, 77, 0.95);
+    z-index: 20;
 }
 
 
@@ -188,4 +208,9 @@ body {
     transform: scale(.98);
     color: red;
     background-color: rgb(56, 56, 34);
+}
+
+.form__button:hover {
+    transform: scale(.98);
+    background: rgb(90, 10, 10);
 }

@@ -20,6 +20,7 @@
         </header>
         <main>
             <section class="register">
+                <img src="./assets/images/cards-icon.png" alt="cards" class="register__image">
                 <h3 class="register__title">Welcome to the game!</h3>
                 <form class="register__form">
                     <p class="form__player1 form__content">
@@ -37,13 +38,14 @@
                     <fieldset class="form__score form__content form__fieldset">
                         <legend>Desired final score?</legend>
                         <div class="form__fieldset__options">
-                            <p><label class="score__choice"> <input type="radio" name="final_score" required value="21"> 21 </label></p>
+                            <p><label class="score__choice"> <input type="radio" name="final_score" required checked value="21"> 21 </label></p>
                             <p><label class="score__choice"> <input type="radio" name="final_score" required value="42"> 42 </label></p>
                         </div>    
                     </fieldset>
                     <button class="form__button">Play!</button>
                 </form>
             </section>
+            <div class="overlay"></div>
             <section class="board">
                 <section class="board__cards">
                     <div class="board__cards__one">
