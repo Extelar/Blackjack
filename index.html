@@ -20,24 +20,28 @@
         </header>
         <main>
             <section class="register">
+                <h3 class="register__title">Welcome to the game!</h3>
                 <form class="register__form">
-                    <p class="form__player1">
+                    <p class="form__player1 form__content">
                         <label for="player_one">
                             Player one's name:
-                            <input type="text" id="player_one" name="player_one_name" required>
+                            <input type="text" id="player_one" name="player_one_name" placeholder = "player one" required>
                         </label>
                     </p>
-                    <p class="form__player2">
+                    <p class="form__player2 form__content">
                         <label for="player_two">
                             Player two's name:
-                            <input type="text" id="player_two" name="player_two_name" required>
+                            <input type="text" id="player_two" name="player_two_name" placeholder = "player two" required>
                         </label>
                     </p>
-                    <fieldset class="form__score">
-                        <legend>Which final score do you want to play with?</legend>
-                        <p><label class="score__choice"> <input type="radio" name="final_score" required value="21"> 21 </label></p>
-                        <p><label class="score__choice"> <input type="radio" name="final_score" required value="42"> 42 </label></p>
+                    <fieldset class="form__score form__content form__fieldset">
+                        <legend>Desired final score?</legend>
+                        <div class="form__fieldset__options">
+                            <p><label class="score__choice"> <input type="radio" name="final_score" required value="21"> 21 </label></p>
+                            <p><label class="score__choice"> <input type="radio" name="final_score" required value="42"> 42 </label></p>
+                        </div>    
                     </fieldset>
+                    <button class="form__button">Play!</button>
                 </form>
             </section>
             <section class="board">
