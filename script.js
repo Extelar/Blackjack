@@ -141,7 +141,7 @@ hitButton.addEventListener('click', () => {
     setTimeout(() => {
         updateAllCounter();
         changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
-        console.log(cards)
+        // console.log(cards)
     },20)
 })
 
@@ -149,6 +149,7 @@ stayButton.addEventListener('click', () => {
     isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
     changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
     lastLeftPosition = cardLeftPosition;
+    console.log(cardLeftPosition)
 })
 
 
