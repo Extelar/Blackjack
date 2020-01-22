@@ -12,7 +12,7 @@ const deckCounter = document.querySelector('.deck__count span');
 const hitButton = document.querySelector('.hit');
 const stayButton = document.querySelector('.stay');
 const foldButton = document.querySelector('.fold');
-
+const registerForm = document.querySelector('.register');
 
 const changeCardPosition = (className) => {
     let card = document.querySelector(className)
@@ -152,6 +152,10 @@ stayButton.addEventListener('click', () => {
     isPlayerOneTurn ? isPlayerOneTurn = false : isPlayerOneTurn = true;
     changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
     console.log(cardLeftPosition)
+})
+
+window.addEventListener('load', () => {
+    registerForm.style.cssText = 'opacity: 1; transform: translateY(0)';
 })
 
 //Code which run individually without event listeners
