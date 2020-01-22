@@ -6,6 +6,7 @@ let cardLeftPosition = [29.6, 29.6];
 let isPlayerOneTurn = true;
 let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
+let formResponses = [];
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
 const deckCounter = document.querySelector('.deck__count span');
@@ -13,6 +14,11 @@ const hitButton = document.querySelector('.hit');
 const stayButton = document.querySelector('.stay');
 const foldButton = document.querySelector('.fold');
 const registerForm = document.querySelector('.register');
+const playerOneField = document.querySelector('#player_one');
+const playerTwoField = document.querySelector('#player_two');
+const scoreOptions = document.querySelectorAll('.score__choice');
+const registerSubmitButton = document.querySelector('.form__button');
+const playerNames = document.querySelectorAll('.player__name');
 
 const changeCardPosition = (className) => {
     let card = document.querySelector(className)
@@ -103,6 +109,10 @@ const getCard = (number) => {
     playerTwoBoard.appendChild(card);
 }
 
+const recordResponses = (event, index) => {
+    formResponses[index] = event.target.value;
+}
+
 const updateAllCounter = () => {
     let nullCounter = 0;
     for (el of cards)
@@ -123,6 +133,8 @@ const updateScore = (increment) => {
     playerTwoBoard.querySelector('.board__score').innerHTML = playersTotalScore[1];
 }
 
+
+//Event listeners
 hitButton.addEventListener('click', () => {
     let cardIndex;
     let cardValue;
@@ -156,6 +168,30 @@ stayButton.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
     registerForm.style.cssText = 'opacity: 1; transform: translateY(0)';
+    
+})
+
+playerOneField.addEventListener('change', () => {
+    recordResponses(event, 0);
+})
+
+playerTwoField.addEventListener('change', () => {
+    recordResponses(event, 1);
+})
+
+for (el of scoreOptions)
+{
+    el.addEventListener('change', () => {
+        recordResponses(event, 2)
+    })
+}
+
+registerForm.querySelector(".register__form").addEventListener('submit', (event) => {
+    event.preventDefault();
+    playerNames[0].textContent = formResponses[0];
+    playerNames[1].textContent = formResponses[1];
+    registerForm.style.opacity = 0;
+    document.querySelector('.overlay').style.cssText = 'opacity: 0; z-index: -100';
 })
 
 //Code which run individually without event listeners

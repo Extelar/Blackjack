@@ -196,6 +196,7 @@ body {
     right: 0;
     background: rgba(83, 77, 77, 0.95);
     z-index: 100;
+    transition: all .7s ease-out;
 }
 
 
