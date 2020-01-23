@@ -228,9 +228,17 @@ body {
     background: #3b5998;
 }
 
+.facebook__icon {
+    margin-right: .7rem;
+}
+
 .linkedIn {
     background: #5b5b5b;
     margin-right: 2rem;
+}
+
+.linkedIn__icon {
+    margin-right: .7rem;
 }
 
 /*
