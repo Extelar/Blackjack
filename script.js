@@ -40,13 +40,13 @@ const changeCardPosition = (className) => {
 const changePlayerIndicator = (boolean, sectionOne, sectionTwo) => {
     if (boolean) 
     {
-        document.querySelector(sectionOne).style.cssText = 'color: yellow; background: #300606; border-radius: 5px';
+        document.querySelector(sectionOne).style.cssText = 'color: #ba3c23; background: #fff; border-radius: 5px';
         document.querySelector(sectionTwo).style.cssText = 'color: #fff; background: none';
     }
     else 
     {
         document.querySelector(sectionOne).style.cssText = 'color: #fff; background: none';
-        document.querySelector(sectionTwo).style.cssText = 'color: yellow; background: #300606; border-radius: 5px';
+        document.querySelector(sectionTwo).style.cssText = 'color: #ba3c23; background: #fff; border-radius: 5px';
     }  
 }
 
@@ -63,12 +63,10 @@ const createCard = (sourceUrl,alternateText) => {
 const displayErrorMessage = (number, section, textField) => {
     const errorMessage = document.createElement('p');
     errorMessage.classList.add(`error__message__${number}`)
-    errorMessage.textContent = `please complete form ${number}`;
+    errorMessage.textContent = `field cannot be blank`;
     section.appendChild(errorMessage);
-    textField.style.borderColor = 'red';
-    errorMessage.style.color = 'red';
-    errorMessage.style.fontSize = '.7rem';
-    errorMessage.style.position = 'absolute';
+    textField.style.borderColor = '#ba362d';
+    errorMessage.style.cssText = 'color: #ba362d; font-size: .7rem; position: absolute';
 }
 
 const getCard = (number) => {
@@ -226,7 +224,8 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
         playerNames[0].textContent = formResponses[0];
         playerNames[1].textContent = formResponses[1];
         registerForm.style.opacity = 0;
-        document.querySelector('.overlay').style.cssText = 'opacity: 0; z-index: -100';
+        document.querySelector('.overlay').style.cssText =  'z-index: -100';
+        document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
     }
     console.log(formResponses)
 })
