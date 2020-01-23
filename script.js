@@ -19,7 +19,8 @@ const playerTwoField = document.querySelector('#player_two');
 const scoreOptions = document.querySelectorAll('.score__choice');
 const registerSubmitButton = document.querySelector('.form__button');
 const playerNames = document.querySelectorAll('.player__name');
-
+const facebookButton = document.querySelector('.facebook');
+const linkedinButton = document.querySelector('.linkedIn')
 const changeCardPosition = (className) => {
     let card = document.querySelector(className)
     isPlayerOneTurn ? card.style.top = '6rem' : card.style.top = '35rem';
