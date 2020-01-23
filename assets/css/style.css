@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+::placeholder {
+    padding-left: .1rem;
+}
+
 body {
     background: url('../images/green-background.jpg') fixed center;
     color: #fff;
@@ -40,14 +44,6 @@ body {
 .card img {
     width: 5%;
     position: absolute;
-    /*
-        top: 6rem;
-        left: 20rem;
-    */
-    /*
-        top: 38rem;
-        left: 20rem;
-    */
     top: 20.5rem;
     left: 39.5rem;
     opacity: 0;
@@ -121,6 +117,89 @@ body {
     transition: all .2s ease-in;
 }
 
+.register {
+    position: absolute;
+    top: 20vh;
+    background-color: #fff;
+    color: black;
+    width: 30%;
+    height: 65vh;
+    left: 28.5rem;
+    z-index: 1000;
+    text-align: center;
+    padding-top: 1.7rem;
+    transform: translateY(-3rem);
+    opacity: 0;
+    transition: all .7s ease-in;
+}
+
+.register__image {
+    display: block;
+    width: 10%;
+    margin: auto;
+}
+
+.register__form {
+    width: 80%;
+    margin: auto;
+}
+
+.register__title {
+    font-size: 1.7rem;
+}
+
+.form__content {
+    font-size: .9rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.form__content #player_one,
+.form__content #player_two {
+    display: block;
+    margin-top: .4rem;
+    height: 5vh;
+    width: 100%;
+    padding-left: .5rem;
+}
+
+.form__fieldset {
+    border: none;
+    padding: 0;
+}
+
+.form__fieldset__options {
+    display: flex;
+}
+
+.form__fieldset__options p:nth-of-type(2) {
+    margin-left: 1.5rem;
+}
+
+.form__button {
+    background-color: #000;
+    border: none;
+    width: 100%;
+    height: 6vh;
+    font-weight: 700;
+    margin-top: .6rem;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all .2s ease-in;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(83, 77, 77, 1);
+    z-index: 100;
+    transition: all .7s ease-out;
+}
+
 
 /*
     animation
@@ -134,4 +213,9 @@ body {
     transform: scale(.98);
     color: red;
     background-color: rgb(56, 56, 34);
+}
+
+.form__button:hover {
+    transform: scale(.98);
+    background: rgb(139, 16, 16);
 }
