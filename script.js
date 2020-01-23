@@ -60,6 +60,17 @@ const createCard = (sourceUrl,alternateText) => {
     return card;
 }
 
+const displayErrorMessage = (number, section, textField) => {
+    const errorMessage = document.createElement('p');
+    errorMessage.classList.add(`error__message__${number}`)
+    errorMessage.textContent = `please complete form ${number}`;
+    section.appendChild(errorMessage);
+    textField.style.borderColor = 'red';
+    errorMessage.style.color = 'red';
+    errorMessage.style.fontSize = '.7rem';
+    errorMessage.style.position = 'absolute';
+}
+
 const getCard = (number) => {
     let card;
     switch(number) {
@@ -168,7 +179,6 @@ stayButton.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
     registerForm.style.cssText = 'opacity: 1; transform: translateY(0)';
-    
 })
 
 playerOneField.addEventListener('change', () => {
@@ -183,15 +193,42 @@ for (el of scoreOptions)
 {
     el.addEventListener('change', () => {
         recordResponses(event, 2)
+        console.log(formResponses);
     })
 }
 
 registerForm.querySelector(".register__form").addEventListener('submit', (event) => {
     event.preventDefault();
-    playerNames[0].textContent = formResponses[0];
-    playerNames[1].textContent = formResponses[1];
-    registerForm.style.opacity = 0;
-    document.querySelector('.overlay').style.cssText = 'opacity: 0; z-index: -100';
+    if (!formResponses[0] && !formResponses[1])
+    {  
+        if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2'))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+        }    
+    }
+    else if (!formResponses[0] && formResponses[1])
+    {
+        if (!document.querySelector('.error__message__1'))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+        } 
+    }  
+    else if (!formResponses[1] && formResponses[0])
+    {
+        if (!document.querySelector('.error__message__2'))
+        {
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField)
+        }
+    }
+    else
+    {
+        playerNames[0].textContent = formResponses[0];
+        playerNames[1].textContent = formResponses[1];
+        registerForm.style.opacity = 0;
+        document.querySelector('.overlay').style.cssText = 'opacity: 0; z-index: -100';
+    }
+    console.log(formResponses)
 })
 
 //Code which run individually without event listeners
