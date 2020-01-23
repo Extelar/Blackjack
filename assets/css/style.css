@@ -206,6 +206,22 @@ body {
     transition: all 1s ease-out;
 }
 
+.social__media {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: 3rem;
+    padding-top: 1rem;
+}
+
+.social__link {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background: red;
+    padding: 1rem .7rem;
+}
 
 /*
     animation
