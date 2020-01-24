@@ -20,7 +20,12 @@ const scoreOptions = document.querySelectorAll('.score__choice');
 const registerSubmitButton = document.querySelector('.form__button');
 const playerNames = document.querySelectorAll('.player__name');
 const facebookButton = document.querySelector('.facebook');
-const linkedinButton = document.querySelector('.linkedIn')
+const linkedinButton = document.querySelector('.linkedIn');
+const playerOneBetField = document.querySelector('#bet_one');
+const playerTwoBetField = document.querySelector('#bet_two');
+
+
+
 const changeCardPosition = (className) => {
     let card = document.querySelector(className)
     isPlayerOneTurn ? card.style.top = '6rem' : card.style.top = '35rem';
@@ -182,10 +187,12 @@ window.addEventListener('load', () => {
 
 playerOneField.addEventListener('change', () => {
     recordResponses(event, 0);
+    console.log(formResponses);
 })
 
 playerTwoField.addEventListener('change', () => {
     recordResponses(event, 1);
+    console.log(formResponses);
 })
 
 for (el of scoreOptions)
@@ -196,34 +203,145 @@ for (el of scoreOptions)
     })
 }
 
+playerOneBetField.addEventListener('change', () => {
+    recordResponses(event, 3);
+    console.log(formResponses);
+})
+
+playerTwoBetField.addEventListener('change', () => {
+    recordResponses(event, 4);
+    console.log(formResponses);
+})
+
 registerForm.querySelector(".register__form").addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!formResponses[0] && !formResponses[1])
+    if ((!formResponses[0] && !formResponses[1]) && (!formResponses[3] && !formResponses[4]))
     {  
+        if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__3') && !document.querySelector('.error__message__4')))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if (formResponses[0] && ((!formResponses[1] && !formResponses[3]) && !formResponses[4]))
+    {
+        if ((!document.querySelector('.error__message__2') && !document.querySelector('.error__message__3')) && (!document.querySelector('.error__message__4')))
+        {
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if (formResponses[1] && ((!formResponses[0] && !formResponses[3]) && !formResponses[4]))
+    {
+        if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__3')) && (!document.querySelector('.error__message__4')))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if (formResponses[3] && ((!formResponses[0] && !formResponses[1]) && !formResponses[4]))
+    {
+        if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__4')))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if (formResponses[4] && ((!formResponses[0] && !formResponses[1]) && !formResponses[3]))
+    {
+        if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__3')))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+        }    
+    }
+    else if ((formResponses[0] && formResponses[1]) && (!formResponses[3] && !formResponses[4]))
+    {
+        if (!document.querySelector('.error__message__3') && !document.querySelector('.error__message__4'))
+        {
+            displayErrorMessage(1,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(2,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if ((formResponses[1] && formResponses[3]) && (!formResponses[0] && !formResponses[4]))
+    {
+        if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__4'))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if ((formResponses[3] && formResponses[4]) && (!formResponses[0] && !formResponses[1]))
+    {
         if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2'))
         {
             displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
             displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
         }    
     }
-    else if (!formResponses[0] && formResponses[1])
+    else if ((formResponses[0] && formResponses[4]) && (!formResponses[1] && !formResponses[3]))
+    {
+        if (!document.querySelector('.error__message__2') && !document.querySelector('.error__message__3'))
+        {
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+        }    
+    }
+    else if ((formResponses[0] && formResponses[3]) && (!formResponses[1] && !formResponses[4]))
+    {
+        if (!document.querySelector('.error__message__2') && !document.querySelector('.error__message__4'))
+        {
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+        }    
+    }
+    else if ((formResponses[1] && formResponses[4]) && (!formResponses[0] && !formResponses[3]))
+    {
+        if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__3'))
+        {
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+        }    
+    }
+    else if (!formResponses[0] && ((formResponses[1] && formResponses[3]) && formResponses[4]))
     {
         if (!document.querySelector('.error__message__1'))
         {
             displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
         } 
     }  
-    else if (!formResponses[1] && formResponses[0])
+    else if (!formResponses[1] && ((formResponses[0] && formResponses[3]) && formResponses[4]))
     {
         if (!document.querySelector('.error__message__2'))
         {
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField)
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+        }
+    }
+    else if (!formResponses[3] && ((formResponses[0] && formResponses[1]) && formResponses[4]))
+    {
+        if (!document.querySelector('.error__message__3'))
+        {
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+        }
+    }
+    else if (!formResponses[4] && ((formResponses[0] && formResponses[1]) && formResponses[3]))
+    {
+        if (!document.querySelector('.error__message__4'))
+        {
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
         }
     }
     else
     {
         playerNames[0].textContent = formResponses[0];
         playerNames[1].textContent = formResponses[1];
+        
         registerForm.style.opacity = 0;
         document.querySelector('.overlay').style.cssText =  'z-index: -100';
         document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
