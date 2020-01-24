@@ -129,6 +129,53 @@ const recordResponses = (event, index) => {
     formResponses[index] = event.target.value;
 }
 
+const resetErrorMessage = () => {
+    if (formResponses[0])
+    {
+        if (document.querySelector('.error__message__1'))
+        {
+            document.querySelector('.form__player1').removeChild(document.querySelector('.error__message__1'));
+            playerOneField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+        else {
+            playerOneField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+    }
+    if (formResponses[1])
+    {
+        if (document.querySelector('.error__message__2'))
+        {
+            document.querySelector('.form__player2').removeChild(document.querySelector('.error__message__2'));
+            playerTwoField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+        else {
+            playerOneField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+    }
+    if (formResponses[3])
+    {
+        if (document.querySelector('.error__message__3'))
+        {
+            document.querySelector('.betting__form1').removeChild(document.querySelector('.error__message__3'));
+            playerOneBetField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+        else {
+            playerOneField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+    }
+    if (formResponses[4]) 
+    {
+        if (document.querySelector('.error__message__4'))
+        {
+            document.querySelector('.betting__form2').removeChild(document.querySelector('.error__message__4'));
+            playerTwoBetField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+        else {
+            playerOneField.style.borderColor = 'rgb(185, 181, 181)';
+        }
+    }
+}
+
 const updateAllCounter = () => {
     let nullCounter = 0;
     for (el of cards)
@@ -216,6 +263,7 @@ playerTwoBetField.addEventListener('change', () => {
 
 registerForm.querySelector(".register__form").addEventListener('submit', (event) => {
     event.preventDefault();
+    resetErrorMessage();
     if ((!formResponses[0] && !formResponses[1]) && (!formResponses[3] && !formResponses[4]))
     {  
         if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__3') && !document.querySelector('.error__message__4')))
