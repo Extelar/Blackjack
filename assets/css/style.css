@@ -120,11 +120,11 @@ body {
 
 .register {
     position: absolute;
-    top: 20vh;
+    top: 15vh;
     background-color: #fff;
     color: black;
     width: 30%;
-    height: 65vh;
+    height: 75vh;
     left: 28.5rem;
     z-index: 1000;
     text-align: center;
@@ -166,6 +166,33 @@ body {
     width: 100%;
     padding-left: .5rem;
     border: 1px solid rgb(185, 181, 181);
+}
+
+.betting__form {
+    display: flex;
+    margin: 0;
+}
+
+.betting__form1,
+.betting__form2 {
+    margin-top: 0;
+}
+
+.form__content #bet_one,
+.form__content #bet_two {
+    display: block;
+    margin-top: .4rem;
+    height: 5vh;
+    padding-left: .5rem;
+    border: 1px solid rgb(185, 181, 181);
+}
+
+.form__content #bet_one {
+    width: 95%;
+}
+
+.form__content #bet_two {
+    width: 100%;
 }
 
 .form__fieldset {
