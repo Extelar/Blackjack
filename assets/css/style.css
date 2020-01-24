@@ -56,7 +56,7 @@ body {
     height: 20vh;
 }
 
-.board__cards__one p {
+.board__cards__one p:nth-of-type(1) {
     margin: 0;
     margin-top: 4rem;
     margin-left: 5rem;
@@ -66,6 +66,10 @@ body {
     display: inline-block;
     background: none;
     transition: all .2s ease-in;
+}
+
+.board__cards__one p:nth-of-type(2) {
+    margin-left: 5.8rem;
 }
 
 .board__cards__deck img{
@@ -106,7 +110,7 @@ body {
     height: 20vh;
 }
 
-.board__cards__two p {
+.board__cards__two p:nth-of-type(1) {
     margin: 0;
     margin-top: 4rem;
     margin-left: 5rem;
@@ -118,13 +122,17 @@ body {
     transition: all .2s ease-in;
 }
 
+.board__cards__two p:nth-of-type(2) {
+    margin-left: 5.8rem;
+}
+
 .register {
     position: absolute;
-    top: 20vh;
+    top: 15vh;
     background-color: #fff;
     color: black;
     width: 30%;
-    height: 65vh;
+    height: 75vh;
     left: 28.5rem;
     z-index: 1000;
     text-align: center;
@@ -168,6 +176,33 @@ body {
     border: 1px solid rgb(185, 181, 181);
 }
 
+.betting__form {
+    display: flex;
+    margin: 0;
+}
+
+.betting__form1,
+.betting__form2 {
+    margin-top: 0;
+}
+
+.form__content #bet_one,
+.form__content #bet_two {
+    display: block;
+    margin-top: .4rem;
+    height: 5vh;
+    padding-left: .5rem;
+    border: 1px solid rgb(185, 181, 181);
+}
+
+.form__content #bet_one {
+    width: 95%;
+}
+
+.form__content #bet_two {
+    width: 100%;
+}
+
 .form__fieldset {
     border: none;
     padding: 0;
@@ -187,7 +222,7 @@ body {
     width: 100%;
     height: 6vh;
     font-weight: 700;
-    margin-top: .6rem;
+    margin-top: 1.4rem;
     color: #fff;
     cursor: pointer;
     text-transform: uppercase;
@@ -208,7 +243,7 @@ body {
 
 .social__media {
     display: flex;
-    width: 30%;
+    width: 35%;
     margin-left: auto;
     margin-right: 1rem;
     padding-top: 1rem;
@@ -222,6 +257,7 @@ body {
     padding: 1rem .7rem;
     border-radius: 5px;
     transition: all .2s ease-in-out;
+
 }
 
 .facebook {
