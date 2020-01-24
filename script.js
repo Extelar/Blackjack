@@ -19,6 +19,7 @@ const playerTwoField = document.querySelector('#player_two');
 const scoreOptions = document.querySelectorAll('.score__choice');
 const registerSubmitButton = document.querySelector('.form__button');
 const playerNames = document.querySelectorAll('.player__name');
+const playerCapitals = document.querySelectorAll('.player__bet')
 const facebookButton = document.querySelector('.facebook');
 const linkedinButton = document.querySelector('.linkedIn');
 const playerOneBetField = document.querySelector('#bet_one');
@@ -66,10 +67,10 @@ const createCard = (sourceUrl,alternateText) => {
     return card;
 }
 
-const displayErrorMessage = (number, section, textField) => {
+const displayErrorMessage = (number, section, textField, message) => {
     const errorMessage = document.createElement('p');
     errorMessage.classList.add(`error__message__${number}`)
-    errorMessage.textContent = `field cannot be blank`;
+    errorMessage.textContent = message;
     section.appendChild(errorMessage);
     textField.style.borderColor = '#ba362d';
     errorMessage.style.cssText = 'color: #ba362d; font-size: .7rem; position: absolute';
@@ -219,137 +220,157 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
     {  
         if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__3') && !document.querySelector('.error__message__4')))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if (formResponses[0] && ((!formResponses[1] && !formResponses[3]) && !formResponses[4]))
     {
         if ((!document.querySelector('.error__message__2') && !document.querySelector('.error__message__3')) && (!document.querySelector('.error__message__4')))
         {
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if (formResponses[1] && ((!formResponses[0] && !formResponses[3]) && !formResponses[4]))
     {
         if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__3')) && (!document.querySelector('.error__message__4')))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if (formResponses[3] && ((!formResponses[0] && !formResponses[1]) && !formResponses[4]))
     {
         if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__4')))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if (formResponses[4] && ((!formResponses[0] && !formResponses[1]) && !formResponses[3]))
     {
         if ((!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2')) && (!document.querySelector('.error__message__3')))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[0] && formResponses[1]) && (!formResponses[3] && !formResponses[4]))
     {
         if (!document.querySelector('.error__message__3') && !document.querySelector('.error__message__4'))
         {
-            displayErrorMessage(1,document.querySelector('.betting__form1'), playerOneBetField);
-            displayErrorMessage(2,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(1,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
+            displayErrorMessage(2,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[1] && formResponses[3]) && (!formResponses[0] && !formResponses[4]))
     {
         if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__4'))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[3] && formResponses[4]) && (!formResponses[0] && !formResponses[1]))
     {
         if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__2'))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[0] && formResponses[4]) && (!formResponses[1] && !formResponses[3]))
     {
         if (!document.querySelector('.error__message__2') && !document.querySelector('.error__message__3'))
         {
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[0] && formResponses[3]) && (!formResponses[1] && !formResponses[4]))
     {
         if (!document.querySelector('.error__message__2') && !document.querySelector('.error__message__4'))
         {
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }    
     }
     else if ((formResponses[1] && formResponses[4]) && (!formResponses[0] && !formResponses[3]))
     {
         if (!document.querySelector('.error__message__1') && !document.querySelector('.error__message__3'))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
         }    
     }
     else if (!formResponses[0] && ((formResponses[1] && formResponses[3]) && formResponses[4]))
     {
         if (!document.querySelector('.error__message__1'))
         {
-            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField);
+            displayErrorMessage(1,document.querySelector('.form__player1'), playerOneField, `field cannot be blank`);
         } 
     }  
     else if (!formResponses[1] && ((formResponses[0] && formResponses[3]) && formResponses[4]))
     {
         if (!document.querySelector('.error__message__2'))
         {
-            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField);
+            displayErrorMessage(2,document.querySelector('.form__player2'), playerTwoField, `field cannot be blank`);
         }
     }
     else if (!formResponses[3] && ((formResponses[0] && formResponses[1]) && formResponses[4]))
     {
         if (!document.querySelector('.error__message__3'))
         {
-            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField);
+            displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `field cannot be blank`);
         }
     }
     else if (!formResponses[4] && ((formResponses[0] && formResponses[1]) && formResponses[3]))
     {
         if (!document.querySelector('.error__message__4'))
         {
-            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField);
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `field cannot be blank`);
         }
     }
     else
     {
         playerNames[0].textContent = formResponses[0];
         playerNames[1].textContent = formResponses[1];
-        
-        registerForm.style.opacity = 0;
-        document.querySelector('.overlay').style.cssText =  'z-index: -100';
-        document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
+        if (isNaN(parseInt(formResponses[3])))  
+        {
+            if (isNaN(parseInt(formResponses[4])))
+            {
+                displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `Please enter only numbers`);
+                displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `Please enter only numbers`);
+            }
+            else
+            {
+                displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `Please enter only numbers`);
+            }
+        }
+        else if(isNaN(parseInt(formResponses[4])))
+        {
+            displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `Please enter only numbers`);
+        }
+        else
+        {
+            playerCapitals[0].textContent = parseInt(formResponses[3]);
+            playerCapitals[1].textContent = parseInt(formResponses[4]);
+            registerForm.style.opacity = 0;
+            document.querySelector('.overlay').style.cssText =  'z-index: -100';
+            document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
+        }
     }
     console.log(formResponses)
 })
 
-//Code which run individually without event listeners
+//Code which run individually without event listenersplayerCapitals[1].textContent = formResponses[4];
 
 changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
