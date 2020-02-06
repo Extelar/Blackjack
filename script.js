@@ -7,6 +7,7 @@ let isPlayerOneTurn = true;
 let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
 let formResponses = [];
+const board = document.querySelector('.board');
 const playerOneBoard = document.querySelector('.board__cards__one');
 const playerTwoBoard = document.querySelector('.board__cards__two');
 const deckCounter = document.querySelector('.deck__count span');
@@ -24,8 +25,6 @@ const facebookButton = document.querySelector('.facebook');
 const linkedinButton = document.querySelector('.linkedIn');
 const playerOneBetField = document.querySelector('#bet_one');
 const playerTwoBetField = document.querySelector('#bet_two');
-
-
 
 const changeCardPosition = (className) => {
     let card = document.querySelector(className)
@@ -67,6 +66,33 @@ const createCard = (sourceUrl,alternateText) => {
     return card;
 }
 
+const createNotifOverlay = () => {
+    const overlay = document.createElement('div');
+    overlay.classList.add('notifOverlay');
+    overlay.style.cssText = 'position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(197, 192, 191, .85); opacity: 0;  z-index: 100; transition: all 1s ease-out;'
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+    }, 10)
+    document.querySelector('main').appendChild(overlay);
+}
+
+const createNotifModal = (paraText, buttonText, imageSrc, imageAlt, sectionClass, textClass, imgClass, buttonClass) => {
+    const modalContainer = document.createElement('section');
+    const winnerMessage = document.createElement('p');
+    const winnerIcon = document.createElement('img');
+    const winnerButton  = document.createElement('button');
+    modalContainer.classList.add(sectionClass);
+    winnerMessage.classList.add(textClass);
+    winnerIcon.classList.add(imgClass);
+    winnerButton.classList.add(buttonClass);
+    winnerMessage.textContent = paraText;
+    winnerIcon.src = imageSrc;
+    winnerIcon.alt = imageAlt;
+    winnerButton.textContent = buttonText;
+    modalContainer.innerHTML += winnerIcon.outerHTML + winnerMessage.outerHTML + winnerButton.outerHTML;
+    board.appendChild(modalContainer);
+}
+
 const displayErrorMessage = (number, section, textField, message) => {
     const errorMessage = document.createElement('p');
     errorMessage.classList.add(`error__message__${number}`)
@@ -74,6 +100,25 @@ const displayErrorMessage = (number, section, textField, message) => {
     section.appendChild(errorMessage);
     textField.style.borderColor = '#ba362d';
     errorMessage.style.cssText = 'color: #ba362d; font-size: .7rem; position: absolute';
+}
+
+const displayWinnerModal = () => {
+    if (playersTotalScore[0] >= formResponses[2])
+    {
+        createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+        createNotifOverlay();
+        setTimeout(() => {
+            resetRound();
+        },10);
+    }
+    else if (playersTotalScore[1] >= formResponses[2])
+    {
+        createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+        createNotifOverlay();
+        setTimeout(() => {
+            resetRound();
+        },10);
+    }
 }
 
 const getCard = (number) => {
@@ -127,6 +172,41 @@ const getCard = (number) => {
 
 const recordResponses = (event, index) => {
     formResponses[index] = event.target.value;
+}
+
+const resetRoundValue = () => {
+    playersTotalScore = [0,0];
+    cardSectionCounter = 1;
+    cardLeftPosition = [29.6, 29.6];
+    isPlayerOneTurn = true;
+    isStayButtonClicked = false;
+    const cardsInDisplay = document.querySelectorAll('.card');
+    for (el of cardsInDisplay)
+    {
+        playerTwoBoard.removeChild(el);
+    }
+    cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13]; 
+}
+
+const resetRound = () => {
+    const winnerButton = document.querySelector(`.winner__button`);
+    const winnerModal = document.querySelector('.winner__modal');
+    const notificationOverlay = document.querySelector('.notifOverlay');
+    winnerModal.style.cssText = 'opacity:1; transform:translateY(0)';
+    winnerButton.addEventListener('click', () => {
+        resetRoundValue();
+        winnerModal.style.cssText = 'opacity:0; transform:translateY(-5rem)';
+        notificationOverlay.style.cssText = 'opacity:0; z-index: -100';
+        setTimeout(()=> {
+            board.removeChild(winnerModal);
+            document.querySelector('main').removeChild(notificationOverlay)
+        },1000)
+        setTimeout(() => {
+            changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
+            deckCounter.innerHTML = totalCards;
+            updateScore(0);
+        }, 10)
+    })  
 }
 
 const resetErrorMessage = () => {
@@ -219,7 +299,7 @@ hitButton.addEventListener('click', () => {
     setTimeout(() => {
         updateAllCounter();
         changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
-        // console.log(cards)
+        displayWinnerModal();
     },20)
 })
 
@@ -423,3 +503,4 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
 changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
 updateScore(0);
+
