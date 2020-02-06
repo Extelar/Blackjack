@@ -418,7 +418,7 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
     console.log(formResponses)
 })
 
-//Code which run individually without event listenersplayerCapitals[1].textContent = formResponses[4];
+//Code which run individually without event listeners
 
 changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
 deckCounter.innerHTML = totalCards;
