@@ -277,6 +277,51 @@ body {
     margin-right: .7rem;
 }
 
+.winner__modal {
+    border-radius: 5px; 
+    background-color: #fff; 
+    color: #000; 
+    width: 30%; 
+    height: 40vh; 
+    position: absolute; 
+    top: 25vh; 
+    left: 34.2%;
+    text-align: center;
+    z-index: 1000;
+    transform: translateY(-5rem);
+    opacity: 0;
+    transition: all .8s ease-out;
+}
+
+.winner__message {
+    font-size:2.5rem; 
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.winner__icon {
+    display: block;
+    width: 20%;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.winner__button {
+    background: rgb(6, 196, 38);
+    width: 100%;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 1.65rem;
+    height: 10vh;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
 /*
     animation
 */
@@ -298,4 +343,8 @@ body {
 
 .social__link:hover {
     transform: scale(.98);
+}
+
+.winner__button:hover {
+    background-color: green;
 }
