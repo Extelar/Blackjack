@@ -6,6 +6,7 @@ let cardLeftPosition = [29.6, 29.6];
 let isPlayerOneTurn = true;
 let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
+let playersTotalBet = [0,0];
 let formResponses = [];
 const board = document.querySelector('.board');
 const playerOneBoard = document.querySelector('.board__cards__one');
@@ -102,22 +103,51 @@ const displayErrorMessage = (number, section, textField, message) => {
     errorMessage.style.cssText = 'color: #ba362d; font-size: .7rem; position: absolute';
 }
 
+const updatePlayerBet = (index) => {
+    playersTotalBet[index] -= 50;
+    playerCapitals[index].textContent = playersTotalBet[index];
+}
+
 const displayWinnerModal = () => {
     if (playersTotalScore[0] >= formResponses[2])
     {
-        createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
-        createNotifOverlay();
-        setTimeout(() => {
-            resetRound();
-        },10);
+        updatePlayerBet(0);
+        if (playersTotalBet[0] <= 0)
+        {
+            createNotifModal(`${formResponses[1]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
+        else
+        {
+            createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
     }
     else if (playersTotalScore[1] >= formResponses[2])
     {
-        createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
-        createNotifOverlay();
-        setTimeout(() => {
-            resetRound();
-        },10);
+        updatePlayerBet(1);
+        if (playersTotalBet[1] <= 0)
+        {
+            createNotifModal(`${formResponses[0]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
+        else
+        {
+            createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
     }
 }
 
@@ -488,8 +518,10 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
         }
         else
         {
-            playerCapitals[0].textContent = parseInt(formResponses[3]);
-            playerCapitals[1].textContent = parseInt(formResponses[4]);
+            playersTotalBet[0] = parseInt(formResponses[3]);
+            playersTotalBet[1] = parseInt(formResponses[4]);
+            playerCapitals[0].textContent = playersTotalBet[0];
+            playerCapitals[1].textContent = playersTotalBet[1];
             registerForm.style.opacity = 0;
             document.querySelector('.overlay').style.cssText =  'z-index: -100';
             document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
