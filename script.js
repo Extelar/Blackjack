@@ -114,7 +114,7 @@ const displayWinnerModal = () => {
         updatePlayerBet(0);
         if (playersTotalBet[0] <= 0)
         {
-            createNotifModal(`${formResponses[1]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifModal(`${formResponses[1]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "final__button");
             createNotifOverlay();
             setTimeout(() => {
                 resetRound();
@@ -122,7 +122,7 @@ const displayWinnerModal = () => {
         }
         else
         {
-            createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button");
             createNotifOverlay();
             setTimeout(() => {
                 resetRound();
@@ -134,7 +134,7 @@ const displayWinnerModal = () => {
         updatePlayerBet(1);
         if (playersTotalBet[1] <= 0)
         {
-            createNotifModal(`${formResponses[0]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifModal(`${formResponses[0]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "final__button");
             createNotifOverlay();
             setTimeout(() => {
                 resetRound();
@@ -142,7 +142,7 @@ const displayWinnerModal = () => {
         }
         else
         {
-            createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
+            createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button");
             createNotifOverlay();
             setTimeout(() => {
                 resetRound();
@@ -219,24 +219,34 @@ const resetRoundValue = () => {
 }
 
 const resetRound = () => {
-    const winnerButton = document.querySelector(`.winner__button`);
     const winnerModal = document.querySelector('.winner__modal');
     const notificationOverlay = document.querySelector('.notifOverlay');
     winnerModal.style.cssText = 'opacity:1; transform:translateY(0)';
-    winnerButton.addEventListener('click', () => {
-        resetRoundValue();
-        winnerModal.style.cssText = 'opacity:0; transform:translateY(-5rem)';
-        notificationOverlay.style.cssText = 'opacity:0; z-index: -100';
-        setTimeout(()=> {
-            board.removeChild(winnerModal);
-            document.querySelector('main').removeChild(notificationOverlay)
-        },1000)
-        setTimeout(() => {
-            changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
-            deckCounter.innerHTML = totalCards;
-            updateScore(0);
-        }, 10)
-    })  
+    if (document.querySelector('.winner__button'))
+    {
+        const winnerButton = document.querySelector(`.winner__button`);
+        winnerButton.addEventListener('click', () => {
+            resetRoundValue();
+            winnerModal.style.cssText = 'opacity:0; transform:translateY(-5rem)';
+            notificationOverlay.style.cssText = 'opacity:0; z-index: -100';
+            setTimeout(()=> {
+                board.removeChild(winnerModal);
+                document.querySelector('main').removeChild(notificationOverlay)
+            },1000)
+            setTimeout(() => {
+                changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
+                deckCounter.innerHTML = totalCards;
+                updateScore(0);
+            }, 10)
+        })  
+    } 
+    else if (document.querySelector('.final__button'))
+    {
+        const winnerButton = document.querySelector('.final__button');
+        winnerButton.addEventListener('click', () => {
+            window.location.reload();
+        })
+    }
 }
 
 const resetErrorMessage = () => {

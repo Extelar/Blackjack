@@ -309,6 +309,15 @@ body {
 
 .winner__button {
     background: rgb(6, 196, 38);
+}
+
+.final__button {
+    background: rgb(201, 48, 1);
+}
+
+.winner__button,
+.final__button {
+    
     width: 100%;
     border: none;
     border-bottom-left-radius: 5px;
@@ -347,4 +356,8 @@ body {
 
 .winner__button:hover {
     background-color: green;
+}
+
+.final__button:hover {
+    background-color: darkred;
 }
