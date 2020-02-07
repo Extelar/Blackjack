@@ -6,6 +6,7 @@ let cardLeftPosition = [29.6, 29.6];
 let isPlayerOneTurn = true;
 let isStayButtonClicked = false;
 let playersTotalScore = [0,0];
+let playersTotalBet = [0,0];
 let formResponses = [];
 const board = document.querySelector('.board');
 const playerOneBoard = document.querySelector('.board__cards__one');
@@ -17,7 +18,7 @@ const foldButton = document.querySelector('.fold');
 const registerForm = document.querySelector('.register');
 const playerOneField = document.querySelector('#player_one');
 const playerTwoField = document.querySelector('#player_two');
-const scoreOptions = document.querySelectorAll('.score__choice');
+const betOptions = document.querySelectorAll('.bet__choice');
 const registerSubmitButton = document.querySelector('.form__button');
 const playerNames = document.querySelectorAll('.player__name');
 const playerCapitals = document.querySelectorAll('.player__bet')
@@ -102,22 +103,58 @@ const displayErrorMessage = (number, section, textField, message) => {
     errorMessage.style.cssText = 'color: #ba362d; font-size: .7rem; position: absolute';
 }
 
+const reducePlayerBet = (index) => {
+    playersTotalBet[index] -= parseInt(formResponses[2]);
+    playerCapitals[index].textContent = playersTotalBet[index];
+}
+
+const increasePlayerBet = (index) => {
+    playersTotalBet[index] += parseInt(formResponses[2]);
+    playerCapitals[index].textContent = playersTotalBet[index];
+}
+
 const displayWinnerModal = () => {
-    if (playersTotalScore[0] >= formResponses[2])
+    if (playersTotalScore[0] >= 21)
     {
-        createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
-        createNotifOverlay();
-        setTimeout(() => {
-            resetRound();
-        },10);
+        reducePlayerBet(0);
+        increasePlayerBet(1);
+        if (playersTotalBet[0] <= 0)
+        {
+            createNotifModal(`${formResponses[1]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "final__button");
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
+        else
+        {
+            createNotifModal(`${formResponses[1]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button");
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
     }
-    else if (playersTotalScore[1] >= formResponses[2])
+    else if (playersTotalScore[1] >= 21)
     {
-        createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button")
-        createNotifOverlay();
-        setTimeout(() => {
-            resetRound();
-        },10);
+        reducePlayerBet(1);
+        increasePlayerBet(0);
+        if (playersTotalBet[1] <= 0)
+        {
+            createNotifModal(`${formResponses[0]} wins the game!`,'back to main menu', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "final__button");
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
+        else
+        {
+            createNotifModal(`${formResponses[0]} wins this round!`,'continue...', "./assets/images/golden-winners-cup_1284-18399.jpg", "winner", "winner__modal", "winner__message", "winner__icon", "winner__button");
+            createNotifOverlay();
+            setTimeout(() => {
+                resetRound();
+            },10);
+        }
     }
 }
 
@@ -189,24 +226,34 @@ const resetRoundValue = () => {
 }
 
 const resetRound = () => {
-    const winnerButton = document.querySelector(`.winner__button`);
     const winnerModal = document.querySelector('.winner__modal');
     const notificationOverlay = document.querySelector('.notifOverlay');
     winnerModal.style.cssText = 'opacity:1; transform:translateY(0)';
-    winnerButton.addEventListener('click', () => {
-        resetRoundValue();
-        winnerModal.style.cssText = 'opacity:0; transform:translateY(-5rem)';
-        notificationOverlay.style.cssText = 'opacity:0; z-index: -100';
-        setTimeout(()=> {
-            board.removeChild(winnerModal);
-            document.querySelector('main').removeChild(notificationOverlay)
-        },1000)
-        setTimeout(() => {
-            changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
-            deckCounter.innerHTML = totalCards;
-            updateScore(0);
-        }, 10)
-    })  
+    if (document.querySelector('.winner__button'))
+    {
+        const winnerButton = document.querySelector(`.winner__button`);
+        winnerButton.addEventListener('click', () => {
+            resetRoundValue();
+            winnerModal.style.cssText = 'opacity:0; transform:translateY(-5rem)';
+            notificationOverlay.style.cssText = 'opacity:0; z-index: -100';
+            setTimeout(()=> {
+                board.removeChild(winnerModal);
+                document.querySelector('main').removeChild(notificationOverlay)
+            },1000)
+            setTimeout(() => {
+                changePlayerIndicator(isPlayerOneTurn,'.board__cards__one p', '.board__cards__two p');
+                deckCounter.innerHTML = totalCards;
+                updateScore(0);
+            }, 10)
+        })  
+    } 
+    else if (document.querySelector('.final__button'))
+    {
+        const winnerButton = document.querySelector('.final__button');
+        winnerButton.addEventListener('click', () => {
+            window.location.reload();
+        })
+    }
 }
 
 const resetErrorMessage = () => {
@@ -323,7 +370,7 @@ playerTwoField.addEventListener('change', () => {
     console.log(formResponses);
 })
 
-for (el of scoreOptions)
+for (el of betOptions)
 {
     el.addEventListener('change', () => {
         recordResponses(event, 2)
@@ -467,7 +514,7 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
         }
     }
     else
-    {
+    {        
         playerNames[0].textContent = formResponses[0];
         playerNames[1].textContent = formResponses[1];
         if (isNaN(parseInt(formResponses[3])))  
@@ -488,11 +535,32 @@ registerForm.querySelector(".register__form").addEventListener('submit', (event)
         }
         else
         {
-            playerCapitals[0].textContent = parseInt(formResponses[3]);
-            playerCapitals[1].textContent = parseInt(formResponses[4]);
-            registerForm.style.opacity = 0;
-            document.querySelector('.overlay').style.cssText =  'z-index: -100';
-            document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
+            if (formResponses[3] < 100)
+            {
+                if (formResponses[4] < 100)
+                {
+                    displayErrorMessage(3,document.querySelector('.betting__form1'), playerOneBetField, `please bet at least 100$`);
+                    displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `please bet at least 100$`);
+                }
+                else
+                {
+                    displayErrorMessage(3,document.querySelector('.betting__form1'), playerTwoBetField, `please bet at least 100$`);
+                }
+            }
+            else if (formResponses[4] < 100)
+            {
+                displayErrorMessage(4,document.querySelector('.betting__form2'), playerTwoBetField, `please bet at least 100$`);
+            }
+            else 
+            {
+                playersTotalBet[0] = parseInt(formResponses[3]);
+                playersTotalBet[1] = parseInt(formResponses[4]);
+                playerCapitals[0].textContent = playersTotalBet[0];
+                playerCapitals[1].textContent = playersTotalBet[1];
+                registerForm.style.opacity = 0;
+                document.querySelector('.overlay').style.cssText =  'z-index: -100';
+                document.querySelector('.overlay').style.transform = 'translateX(-100rem)';
+            }
         }
     }
     console.log(formResponses)
