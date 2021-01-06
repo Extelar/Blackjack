@@ -4,6 +4,9 @@ Language.
 
 # Sample Screenshots:
 ![Login screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true)
+![Login screen error](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1-err.JPG?raw=true)
+![Main screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-main-screen.JPG?raw=true)
+![Win screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-win.JPG?raw=true)
 
 # Installation
 The installation is very simple, and you will need only two steps:
