@@ -3,10 +3,12 @@ A replication of the popular 1 vs 1 black jack game, with some modification on t
 Language. 
 
 # Sample Screenshots:
-![Login screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true)
-![Login screen error](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1-err.JPG?raw=true)
-![Main screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-main-screen.JPG?raw=true)
-![Win screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-win.JPG?raw=true)
+<p float="left">
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true" width="100" />
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1-err.JPG?raw=true" width="100" /> 
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-main-screen.JPG?raw=true" width="100"/>
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-win.JPG?raw=true" width="100"/>
+</p>
 
 # Installation
 The installation is very simple, and you will need only two steps:
