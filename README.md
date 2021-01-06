@@ -2,6 +2,9 @@
 A replication of the popular 1 vs 1 black jack game, with some modification on the game rules. This project is created by me to enhance my understanding on the Javascript Programming
 Language. 
 
+# Sample Screenshots:
+![Login screen](https://github.com/ymul0001/Blackjack/blob/master/black-jack-1.jpg?raw=true)
+
 # Installation
 The installation is very simple, and you will need only two steps:
 * Clone the repository to your local machine
