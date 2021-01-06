@@ -4,10 +4,10 @@ Language.
 
 # Sample Screenshots:
 <p float="left">
-  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true" width="100" />
-  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1-err.JPG?raw=true" width="100" /> 
-  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-main-screen.JPG?raw=true" width="100"/>
-  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-win.JPG?raw=true" width="100"/>
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true" width="300" />
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1-err.JPG?raw=true" width="300" /> 
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-main-screen.JPG?raw=true" width="300"/>
+  <img src="https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-win.JPG?raw=true" width="300"/>
 </p>
 
 # Installation
