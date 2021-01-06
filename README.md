@@ -3,7 +3,7 @@ A replication of the popular 1 vs 1 black jack game, with some modification on t
 Language. 
 
 # Sample Screenshots:
-![Login screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.jpg?raw=true)
+![Login screen](https://github.com/ymul0001/Blackjack/blob/master/screenshots/black-jack-1.JPG?raw=true)
 
 # Installation
 The installation is very simple, and you will need only two steps:
